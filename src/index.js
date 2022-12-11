@@ -1,23 +1,22 @@
-const express = require('express')
-const route = require('./routes/routes.js')
-const mongoose = require('mongoose')
+const express = require('express');
+const mongoose = require('mongoose');
+const route = require('./routes/routes');
+const multer = require('multer');
 const app = express()
-const multer = require("multer")
 
 app.use(express.json())
-app.use(express.urlencoded({ extended: true }))
 app.use(multer().any())
 
+mongoose.connect('mongodb+srv://hiFunctionup:dpD2Y2FP5bnyaJD3@cluster0.zclrt.mongodb.net/sunil-47',
+    { useNewUrlParser: true })
 
-mongoose.connect("mongodb+srv://AshutoshGupta:ashutosh54264850@cluster0.ukus0.mongodb.net/group68Database", {
-    useNewUrlParser: true
-})
-    .then(() => console.log("MongoDb is connected"))
-    .catch(err => console.log(err));
-    
+    .then(() => console.log("MongoDb is connected..."))
+    .catch(err => console.log(err))
 
-app.use('/', route)
+
+
+app.use("/", route);
 
 app.listen(process.env.PORT || 3000, function () {
-    console.log('Express app running on port: ' + (process.env.PORT || 3000))
-}) 
+    console.log('Express app running on port ' + (process.env.PORT || 3000))
+});
